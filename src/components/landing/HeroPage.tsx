@@ -34,7 +34,7 @@ import {
 } from "lucide-react";
 
 export const HeroPage: React.FC = () => {
-  const { allInstitutions, students, teachers, classes, login } = useEdu();
+  const { allInstitutions, students, teachers, classes, login, switchInstitution } = useEdu();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authEmail, setAuthEmail] = useState("principal@greenfield.demo");
   const [activeTab, setActiveTab] = useState<"overview" | "timetable" | "curriculum">("overview");
@@ -604,20 +604,40 @@ export const HeroPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-[#E8EAED]">
+                <div className="mt-6 pt-4 border-t border-[#E8EAED] grid grid-cols-2 gap-2">
                   <Button
-                    onClick={() => openAuthWithEmail(
-                      inst.id === "inst-greenfield"
-                        ? "principal@greenfield.demo"
-                        : "admin@eduvanta.demo"
-                    )}
+                    onClick={() => {
+                      switchInstitution(inst.id);
+                      login(
+                        inst.id === "inst-greenfield"
+                          ? "principal@greenfield.demo"
+                          : "admin@eduvanta.demo",
+                        "Demo@123"
+                      );
+                    }}
+                    size="sm"
+                    className="w-full text-xs"
+                    icon={<ArrowRight className="w-3.5 h-3.5" />}
+                    iconPosition="right"
+                  >
+                    Quick Launch
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      switchInstitution(inst.id);
+                      openAuthWithEmail(
+                        inst.id === "inst-greenfield"
+                          ? "principal@greenfield.demo"
+                          : "admin@eduvanta.demo"
+                      );
+                    }}
                     variant="outline"
                     size="sm"
                     className="w-full text-xs"
                     icon={<ExternalLink className="w-3.5 h-3.5" />}
                     iconPosition="right"
                   >
-                    Launch Campus Portal
+                    Login Modal
                   </Button>
                 </div>
               </div>
@@ -820,15 +840,23 @@ export const HeroPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-[#E8EAED]">
+                <div className="mt-5 pt-3 border-t border-[#E8EAED] grid grid-cols-2 gap-2">
                   <Button
-                    onClick={() => openAuthWithEmail(persona.email)}
+                    onClick={() => login(persona.email, "Demo@123")}
                     size="sm"
                     className="w-full text-xs"
                     icon={<ArrowRight className="w-3.5 h-3.5" />}
                     iconPosition="right"
                   >
-                    Sign In As {persona.name.split(" ")[0]}
+                    Quick Sign In
+                  </Button>
+                  <Button
+                    onClick={() => openAuthWithEmail(persona.email)}
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-xs"
+                  >
+                    Auth Modal
                   </Button>
                 </div>
               </div>

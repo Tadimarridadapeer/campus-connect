@@ -1418,7 +1418,31 @@ export default function StudentsPage() {
                         </span>
                       </div>
                     </div>
-                    <Button variant="outline" size="xs" icon={<Download className="w-3.5 h-3.5" />}>
+                    <Button
+                      variant="outline"
+                      size="xs"
+                      icon={<Download className="w-3.5 h-3.5" />}
+                      onClick={() => {
+                        const blob = new Blob(
+                          [
+                            `EDUVANTA Official Document Record\nDocument: ${doc.name}\nStudent: ${activeStudent?.fullName}\nAdmission No: ${activeStudent?.admissionNo}\nClass: ${activeStudent?.className}-${activeStudent?.sectionName}\nUpload Date: ${doc.uploadDate}\n\n[Digitally Verified by EDUVANTA Institution ERP]`,
+                          ],
+                          { type: "text/plain" }
+                        );
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = doc.name;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        toast("Document Downloaded", {
+                          type: "success",
+                          message: `${doc.name} successfully exported.`,
+                        });
+                      }}
+                    >
                       Download
                     </Button>
                   </div>

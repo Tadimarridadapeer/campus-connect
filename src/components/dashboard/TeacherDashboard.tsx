@@ -91,25 +91,23 @@ export const TeacherDashboard: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <a href="/attendance">
-            <Button
-              variant="success"
-              size="sm"
-              icon={<CheckSquare className="w-4 h-4" />}
-            >
-              Mark Class Attendance
-            </Button>
-          </a>
-          <a href="/curriculum">
-            <Button
-              variant="outline"
-              size="sm"
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-              icon={<BookOpen className="w-4 h-4" />}
-            >
-              Log Today&apos;s Lesson
-            </Button>
-          </a>
+          <Button
+            variant="success"
+            size="sm"
+            onClick={() => (window.location.href = "/attendance")}
+            icon={<CheckSquare className="w-4 h-4" />}
+          >
+            Mark Class Attendance
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => (window.location.href = "/curriculum")}
+            className="bg-white/10 text-white border-white/20 hover:bg-white/20"
+            icon={<BookOpen className="w-4 h-4" />}
+          >
+            Log Today&apos;s Lesson
+          </Button>
         </div>
       </div>
 
@@ -280,11 +278,13 @@ export const TeacherDashboard: React.FC = () => {
                           Submitted: {sub.submissionDate}
                         </span>
                       </div>
-                      <a href="/assignments">
-                        <Button variant="subtle" size="xs">
-                          Evaluate
-                        </Button>
-                      </a>
+                      <Button
+                        variant="subtle"
+                        size="xs"
+                        onClick={() => (window.location.href = "/assignments")}
+                      >
+                        Evaluate
+                      </Button>
                     </div>
                   );
                 })

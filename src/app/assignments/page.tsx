@@ -227,10 +227,36 @@ export default function AssignmentsPage() {
 
                 {/* Attachments */}
                 {asg.attachments.length > 0 && (
-                  <div className="mt-2 text-[11px] text-[#4667D5] flex items-center gap-1.5 font-medium">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const blob = new Blob(
+                        [
+                          `EDUVANTA Assignment Reference Document\n\nTitle: ${asg.title}\nClass: ${asg.className} - ${asg.sectionName}\nSubject: ${asg.subjectName}\nTeacher: ${asg.teacherName}\nDue Date: ${asg.dueDate}\nMaximum Marks: ${asg.maxMarks}\n\nInstructions & Guidelines:\n${asg.instructions || asg.description}\n\n[Official Assignment Question Paper]`,
+                        ],
+                        { type: "text/plain" }
+                      );
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url;
+                      a.download = asg.attachments[0].name;
+                      document.body.appendChild(a);
+                      a.click();
+                      document.body.removeChild(a);
+                      URL.revokeObjectURL(url);
+                      toast("Attachment Downloaded", {
+                        type: "success",
+                        message: `${asg.attachments[0].name} saved to device.`,
+                      });
+                    }}
+                    className="mt-2 text-[11px] text-[#4667D5] hover:underline flex items-center gap-1.5 font-medium cursor-pointer"
+                  >
                     <FileText className="w-3.5 h-3.5" />
-                    <span>{asg.attachments[0].name} ({asg.attachments[0].size})</span>
-                  </div>
+                    <span>
+                      {asg.attachments[0].name} ({asg.attachments[0].size})
+                    </span>
+                    <Download className="w-3 h-3 ml-0.5 text-[#4667D5]" />
+                  </button>
                 )}
               </div>
 

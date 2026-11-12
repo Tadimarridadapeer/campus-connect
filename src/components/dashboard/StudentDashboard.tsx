@@ -94,21 +94,23 @@ export const StudentDashboard: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2.5">
-          <a href="/assignments">
-            <Button variant="success" size="sm" icon={<ClipboardList className="w-4 h-4" />}>
-              My Homework
-            </Button>
-          </a>
-          <a href="/examinations">
-            <Button
-              variant="outline"
-              size="sm"
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-              icon={<Award className="w-4 h-4" />}
-            >
-              Report Card
-            </Button>
-          </a>
+          <Button
+            variant="success"
+            size="sm"
+            onClick={() => (window.location.href = "/assignments")}
+            icon={<ClipboardList className="w-4 h-4" />}
+          >
+            My Homework
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => (window.location.href = "/examinations")}
+            className="bg-white/10 text-white border-white/20 hover:bg-white/20"
+            icon={<Award className="w-4 h-4" />}
+          >
+            Report Card
+          </Button>
         </div>
       </div>
 
