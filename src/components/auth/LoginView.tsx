@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { useEdu } from "@/context/EduContext";
 import { UserRole } from "@/types";
 import { Button } from "@/components/ui/Button";
-import { Lock, Mail, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Lock, Mail, ArrowRight, ShieldCheck, ArrowLeft, AlertCircle } from "lucide-react";
+import Link from "next/link";
 
 export const LoginView: React.FC = () => {
   const { login } = useEdu();
@@ -70,23 +71,30 @@ export const LoginView: React.FC = () => {
     setLoading(true);
 
     setTimeout(() => {
-      const success = login(email);
-      if (!success) {
-        setError("Invalid email address. Please use one of the demo accounts.");
+      const res = login(email, password);
+      if (!res.success) {
+        setError(res.error || "Invalid credentials. Please use one of the demo accounts.");
       }
       setLoading(false);
-    }, 300);
+    }, 250);
   };
 
   const handleQuickLogin = (demoEmail: string) => {
     setEmail(demoEmail);
     setPassword("Demo@123");
-    login(demoEmail);
+    login(demoEmail, "Demo@123");
   };
 
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4667D5] hover:underline mb-6"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" /> Return to EDUVANTA Home
+        </Link>
+
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#202124] text-white font-bold text-xl mb-3 shadow-md">
           E
         </div>
@@ -94,11 +102,11 @@ export const LoginView: React.FC = () => {
           EDUVANTA
         </h2>
         <p className="text-xs text-[#6B7280] mt-1 font-medium">
-          Next-Generation Multi-Tenant Education Management ERP
+          Enterprise Education Management ERP • Authentication Required
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-3xl">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-3xl">
         <div className="bg-white py-8 px-4 shadow-xl sm:rounded-2xl sm:px-10 border border-[#E8EAED] grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Left: Login Form */}
           <div className="md:col-span-6 flex flex-col justify-between">
@@ -113,8 +121,9 @@ export const LoginView: React.FC = () => {
               </div>
 
               {error && (
-                <div className="mb-4 p-3 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#B91C1C]">
-                  {error}
+                <div className="mb-4 p-3 rounded-lg bg-[#FEF2F2] border border-[#FECACA] text-xs text-[#B91C1C] flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span>{error}</span>
                 </div>
               )}
 
@@ -130,7 +139,7 @@ export const LoginView: React.FC = () => {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 text-xs border border-[#E8EAED] rounded-lg focus:border-[#4667D5] focus:ring-1 focus:ring-[#4667D5] outline-hidden"
+                      className="w-full pl-9 pr-3 py-2 text-xs border border-[#E8EAED] rounded-lg focus:border-[#4667D5] focus:ring-1 focus:ring-[#4667D5] outline-hidden text-[#202124]"
                       placeholder="name@school.demo"
                     />
                   </div>
@@ -147,16 +156,16 @@ export const LoginView: React.FC = () => {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 text-xs border border-[#E8EAED] rounded-lg focus:border-[#4667D5] focus:ring-1 focus:ring-[#4667D5] outline-hidden"
+                      className="w-full pl-9 pr-3 py-2 text-xs border border-[#E8EAED] rounded-lg focus:border-[#4667D5] focus:ring-1 focus:ring-[#4667D5] outline-hidden text-[#202124]"
                       placeholder="Demo@123"
                     />
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between text-[11px] text-[#6B7280]">
-                  <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#25845A]" />
-                    Demo password: Demo@123
+                  <span className="flex items-center gap-1.5 text-[#25845A]">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    Demo password: <strong className="font-mono">Demo@123</strong>
                   </span>
                 </div>
 

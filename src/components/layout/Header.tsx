@@ -7,7 +7,6 @@ import {
   Search,
   Bell,
   Building2,
-  UserCheck,
   ChevronDown,
   LogOut,
   User,
@@ -39,7 +38,6 @@ export const Header: React.FC<HeaderProps> = ({
     currentInstitution,
     allInstitutions,
     switchInstitution,
-    switchRole,
     logout,
     notifications,
     markNotificationAsRead,
@@ -50,7 +48,6 @@ export const Header: React.FC<HeaderProps> = ({
     parents,
   } = useEdu();
 
-  const [showRoleMenu, setShowRoleMenu] = useState(false);
   const [showInstMenu, setShowInstMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -99,16 +96,6 @@ export const Header: React.FC<HeaderProps> = ({
     (n) => n.targetRole === "all" || n.targetRole === currentUser.role
   );
   const unreadCount = userNotifications.filter((n) => !n.isRead).length;
-
-  // Roles available for 1-click test
-  const demoRoles: { role: UserRole; title: string; email: string }[] = [
-    { role: "super_admin", title: "Super Admin", email: "admin@eduvanta.demo" },
-    { role: "principal", title: "Institution Principal", email: "principal@greenfield.demo" },
-    { role: "coordinator", title: "Academic Coordinator", email: "coordinator@greenfield.demo" },
-    { role: "teacher", title: "Teacher (Dr. Arvind Swaminathan)", email: "teacher@greenfield.demo" },
-    { role: "student", title: "Student (Aarav Sharma - 8A)", email: "student@greenfield.demo" },
-    { role: "parent", title: "Parent (Mr. Rajesh Sharma)", email: "parent@greenfield.demo" },
-  ];
 
   // Linked children for parent role
   const currentParent = parents.find((p) => p.id === currentUser.parentId);
@@ -177,7 +164,6 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 onClick={() => {
                   setShowInstMenu(!showInstMenu);
-                  setShowRoleMenu(false);
                   setShowNotifMenu(false);
                   setShowProfileMenu(false);
                 }}
@@ -223,60 +209,11 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           )}
 
-          {/* Quick Role Switcher Pill */}
-          <div className="relative">
-            <button
-              onClick={() => {
-                setShowRoleMenu(!showRoleMenu);
-                setShowInstMenu(false);
-                setShowNotifMenu(false);
-                setShowProfileMenu(false);
-              }}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-[#4667D5] bg-[#EEF2FC] hover:bg-[#E0E7FA] border border-[#D6E0FA] rounded-lg transition-colors cursor-pointer"
-            >
-              <UserCheck className="w-3.5 h-3.5" />
-              <span className="capitalize">{currentUser.role.replace("_", " ")}</span>
-              <ChevronDown className="w-3 h-3 text-[#4667D5]" />
-            </button>
-
-            {showRoleMenu && (
-              <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-[#E8EAED] py-1.5 z-50 animate-in fade-in zoom-in-95 duration-100">
-                <div className="px-3 py-1.5 border-b border-[#F3F4F6]">
-                  <p className="text-[11px] font-semibold text-[#202124]">
-                    Interactive Role Switcher
-                  </p>
-                  <p className="text-[10px] text-[#6B7280]">
-                    Select any persona for live evaluation
-                  </p>
-                </div>
-                {demoRoles.map((r) => (
-                  <button
-                    key={r.role}
-                    onClick={() => {
-                      switchRole(r.role);
-                      setShowRoleMenu(false);
-                    }}
-                    className="w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#F7F8FA] transition-colors"
-                  >
-                    <div>
-                      <p className="font-semibold text-[#202124]">{r.title}</p>
-                      <p className="text-[10px] text-[#6B7280]">{r.email}</p>
-                    </div>
-                    {currentUser.role === r.role && (
-                      <Check className="w-4 h-4 text-[#4667D5] shrink-0" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
           {/* Notification Center */}
           <div className="relative">
             <button
               onClick={() => {
                 setShowNotifMenu(!showNotifMenu);
-                setShowRoleMenu(false);
                 setShowInstMenu(false);
                 setShowProfileMenu(false);
               }}
@@ -354,7 +291,6 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => {
                 setShowProfileMenu(!showProfileMenu);
-                setShowRoleMenu(false);
                 setShowInstMenu(false);
                 setShowNotifMenu(false);
               }}
@@ -414,10 +350,10 @@ export const Header: React.FC<HeaderProps> = ({
                       setShowProfileMenu(false);
                       logout();
                     }}
-                    className="w-full text-left px-4 py-2 text-xs text-[#D94B4B] hover:bg-[#FEF2F2] flex items-center gap-2.5 transition-colors"
+                    className="w-full text-left px-4 py-2 text-xs text-[#D94B4B] hover:bg-[#FEF2F2] flex items-center gap-2.5 transition-colors font-medium"
                   >
                     <LogOut className="w-4 h-4" />
-                    Sign Out / Switch User
+                    Sign Out of Portal
                   </button>
                 </div>
               </div>

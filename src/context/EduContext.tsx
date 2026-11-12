@@ -78,7 +78,7 @@ interface EduContextType {
   setSelectedChildId: (id: string) => void;
 
   // Auth & tenant actions
-  login: (email: string) => boolean;
+  login: (email: string, password?: string) => { success: boolean; error?: string };
   logout: () => void;
   switchRole: (role: UserRole) => void;
   switchInstitution: (institutionId: string) => void;
@@ -140,7 +140,7 @@ interface EduContextType {
 
 const EduContext = createContext<EduContextType | undefined>(undefined);
 
-const STORAGE_KEY = "eduvanta_state_v1";
+const STORAGE_KEY = "eduvanta_state_v2";
 
 export function EduProvider({ children }: { children: React.ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -149,7 +149,7 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
   const [allInstitutions, setAllInstitutions] = useState<Institution[]>(initialInstitutions);
   const [currentInstitutionId, setCurrentInstitutionId] = useState<string>("inst-greenfield");
   const [users, setUsers] = useState<User[]>(initialUsers);
-  const [currentUser, setCurrentUser] = useState<User | null>(initialUsers[0]); // Default Super Admin
+  const [currentUser, setCurrentUser] = useState<User | null>(null); // Starts unauthenticated to show Hero Page
   const [students, setStudents] = useState<Student[]>(initialStudents);
   const [teachers, setTeachers] = useState<Teacher[]>(initialTeachers);
   const [parents, setParents] = useState<Parent[]>(initialParents);
@@ -275,20 +275,34 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
     allInstitutions.find((i) => i.id === currentInstitutionId) || allInstitutions[0];
 
   // Auth actions
-  const login = (email: string): boolean => {
-    const found = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
-    if (found) {
-      setCurrentUser(found);
-      setCurrentInstitutionId(found.institutionId);
-      if (found.role === "parent") {
-        const par = parents.find((p) => p.email.toLowerCase() === email.toLowerCase());
-        if (par && par.childrenIds.length > 0) {
-          setSelectedChildId(par.childrenIds[0]);
-        }
-      }
-      return true;
+  const login = (
+    email: string,
+    password?: string
+  ): { success: boolean; error?: string } => {
+    const trimmedEmail = email.trim().toLowerCase();
+    const found = users.find((u) => u.email.toLowerCase() === trimmedEmail);
+    if (!found) {
+      return {
+        success: false,
+        error: "Account not found with this email. Please check your credentials.",
+      };
     }
-    return false;
+    // Required demo password validation
+    if (password !== undefined && password.trim() !== "Demo@123") {
+      return {
+        success: false,
+        error: "Invalid password. The standard demo password for all accounts is Demo@123",
+      };
+    }
+    setCurrentUser(found);
+    setCurrentInstitutionId(found.institutionId);
+    if (found.role === "parent") {
+      const par = parents.find((p) => p.email.toLowerCase() === trimmedEmail);
+      if (par && par.childrenIds.length > 0) {
+        setSelectedChildId(par.childrenIds[0]);
+      }
+    }
+    return { success: true };
   };
 
   const logout = () => {

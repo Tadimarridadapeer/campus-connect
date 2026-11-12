@@ -1,26 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useEdu } from "@/context/EduContext";
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
 import { GlobalSearchModal } from "@/components/ui/GlobalSearchModal";
 import { LoginView } from "@/components/auth/LoginView";
+import { HeroPage } from "@/components/landing/HeroPage";
 import { cn } from "@/lib/utils";
 
 export const AppLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const pathname = usePathname();
   const { currentUser } = useEdu();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
-  // If not logged in, render the login view
+  // If not authenticated:
   if (!currentUser) {
+    if (pathname === "/") {
+      return <HeroPage />;
+    }
     return <LoginView />;
   }
 
+  // Authenticated ERP view:
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex flex-col">
       <Sidebar
