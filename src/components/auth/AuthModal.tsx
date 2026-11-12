@@ -5,6 +5,7 @@ import { useEdu } from "@/context/EduContext";
 import { UserRole } from "@/types";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import { Lock, Mail, ArrowRight, ShieldCheck, CheckCircle2, KeyRound, AlertCircle } from "lucide-react";
 
 interface AuthModalProps {
@@ -46,7 +47,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     {
       role: "super_admin",
       name: "Dr. Vikramaditya Rao",
-      email: "admin@eduvanta.demo",
+      email: "admin@campusconnect.demo",
       desc: "Super Admin — Multi-campus governance & institution switcher",
       icon: "⚡",
     },
@@ -114,22 +115,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Sign In to EDUVANTA Portal"
+      title="Sign In to CAMPUS CONNECT"
       size="md"
     >
       <div className="space-y-4">
-        <div className="flex items-center gap-3 p-3 bg-[#F7F8FA] border border-[#E8EAED] rounded-xl">
-          <div className="w-10 h-10 rounded-lg bg-[#202124] text-white flex items-center justify-center font-bold text-base shrink-0">
-            E
-          </div>
-          <div className="min-w-0 flex-1">
-            <h4 className="text-xs font-bold text-[#202124] truncate">
-              Institutional ERP Access
-            </h4>
-            <p className="text-[11px] text-[#6B7280]">
-              Sign in with institutional credentials or choose a demo persona
-            </p>
-          </div>
+        <div className="flex items-center justify-between p-3 bg-[#F7F8FA] border border-[#E8EAED] rounded-xl">
+          <BrandLogo size="sm" showTagline={true} />
+          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#EEF2FC] text-[#4667D5]">
+            Portal Access
+          </span>
         </div>
 
         {error && (
@@ -238,7 +232,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         </form>
 
         <p className="text-[10px] text-center text-[#9CA3AF] pt-1">
-          EDUVANTA Education Management ERP • Role-based access control enabled
+          CAMPUS CONNECT • Connecting Every Classroom. • Role-based access control enabled
         </p>
       </div>
     </Modal>

@@ -125,7 +125,7 @@ export default function ReportsPage() {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `EDUVANTA_${reportType.toUpperCase()}_Report.csv`);
+    link.setAttribute("download", `CAMPUS_CONNECT_${reportType.toUpperCase()}_Report.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

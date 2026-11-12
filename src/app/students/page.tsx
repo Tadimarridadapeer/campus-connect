@@ -1425,7 +1425,7 @@ export default function StudentsPage() {
                       onClick={() => {
                         const blob = new Blob(
                           [
-                            `EDUVANTA Official Document Record\nDocument: ${doc.name}\nStudent: ${activeStudent?.fullName}\nAdmission No: ${activeStudent?.admissionNo}\nClass: ${activeStudent?.className}-${activeStudent?.sectionName}\nUpload Date: ${doc.uploadDate}\n\n[Digitally Verified by EDUVANTA Institution ERP]`,
+                            `CAMPUS CONNECT Official Document Record\nDocument: ${doc.name}\nStudent: ${activeStudent?.fullName}\nAdmission No: ${activeStudent?.admissionNo}\nClass: ${activeStudent?.className}-${activeStudent?.sectionName}\nUpload Date: ${doc.uploadDate}\n\n[Digitally Verified by CAMPUS CONNECT Platform]`,
                           ],
                           { type: "text/plain" }
                         );

@@ -254,7 +254,7 @@ export const GlobalSearchModal: React.FC<GlobalSearchModalProps> = ({
 
         <div className="px-4 py-2.5 bg-[#F9FAFB] border-t border-[#E8EAED] text-[11px] text-[#6B7280] flex items-center justify-between">
           <span>Search records across all active modules</span>
-          <span className="font-mono text-[10px]">EDUVANTA v1.0</span>
+          <span className="font-mono text-[10px]">CAMPUS CONNECT</span>
         </div>
       </div>
     </div>

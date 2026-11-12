@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useEdu } from "@/context/EduContext";
 import { UserRole } from "@/types";
 import { Button } from "@/components/ui/Button";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import { Lock, Mail, ArrowRight, ShieldCheck, ArrowLeft, AlertCircle } from "lucide-react";
 import Link from "next/link";
 
@@ -24,7 +25,7 @@ export const LoginView: React.FC = () => {
     {
       role: "super_admin",
       name: "Dr. Vikramaditya Rao",
-      email: "admin@eduvanta.demo",
+      email: "admin@campusconnect.demo",
       desc: "Multi-institution oversight, tenant isolation & global stats",
       icon: "⚡",
     },
@@ -92,18 +93,15 @@ export const LoginView: React.FC = () => {
           href="/"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#4667D5] hover:underline mb-6"
         >
-          <ArrowLeft className="w-3.5 h-3.5" /> Return to EDUVANTA Home
+          <ArrowLeft className="w-3.5 h-3.5" /> Return to CAMPUS CONNECT Home
         </Link>
 
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#202124] text-white font-bold text-xl mb-3 shadow-md">
-          E
+        <div className="flex flex-col items-center justify-center">
+          <BrandLogo size="lg" showTagline={true} />
+          <p className="text-xs text-[#6B7280] mt-3 font-medium">
+            A Complete Education Management Platform for Schools and Colleges
+          </p>
         </div>
-        <h2 className="text-2xl font-bold tracking-tight text-[#202124]">
-          EDUVANTA
-        </h2>
-        <p className="text-xs text-[#6B7280] mt-1 font-medium">
-          Enterprise Education Management ERP • Authentication Required
-        </p>
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-3xl">
@@ -113,10 +111,10 @@ export const LoginView: React.FC = () => {
             <div>
               <div className="mb-6">
                 <h3 className="text-base font-semibold text-[#202124]">
-                  Sign in to your portal
+                  Welcome to Campus Connect.
                 </h3>
                 <p className="text-xs text-[#6B7280] mt-0.5">
-                  Enter credentials or pick a demo persona
+                  Sign in with credentials or choose a demo persona
                 </p>
               </div>
 

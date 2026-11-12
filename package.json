@@ -1,6 +1,7 @@
 {
-  "name": "edu-management",
-  "version": "0.1.0",
+  "name": "campus-connect",
+  "version": "1.0.0",
+  "description": "Campus Connect — A Complete Education Management Platform for Schools and Colleges",
   "private": true,
   "scripts": {
     "dev": "next dev",

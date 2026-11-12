@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useEdu } from "@/context/EduContext";
 import { cn } from "@/lib/utils";
+import { BrandLogo } from "@/components/common/BrandLogo";
 
 interface SidebarProps {
   collapsed: boolean;
@@ -133,20 +134,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         {/* Brand & Institution Info Header */}
         <div className="h-16 px-4 border-b border-[#E8EAED] flex items-center justify-between">
-          <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-9 h-9 rounded-lg bg-[#202124] text-white flex items-center justify-center font-bold text-base shrink-0 shadow-xs">
-              E
-            </div>
-            {!collapsed && (
-              <div className="overflow-hidden leading-tight">
-                <span className="font-bold text-sm tracking-tight text-[#202124] block">
-                  EDUVANTA
-                </span>
-                <span className="text-[10px] text-[#6B7280] font-medium tracking-wide uppercase truncate block">
-                  {currentInstitution.code} • {currentInstitution.academicYear}
-                </span>
-              </div>
-            )}
+          <div className="flex items-center gap-2.5 overflow-hidden">
+            <BrandLogo size="sm" collapsed={collapsed} showTagline={!collapsed} />
           </div>
 
           {/* Collapse Button (Desktop) */}

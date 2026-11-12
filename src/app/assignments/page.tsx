@@ -232,7 +232,7 @@ export default function AssignmentsPage() {
                     onClick={() => {
                       const blob = new Blob(
                         [
-                          `EDUVANTA Assignment Reference Document\n\nTitle: ${asg.title}\nClass: ${asg.className} - ${asg.sectionName}\nSubject: ${asg.subjectName}\nTeacher: ${asg.teacherName}\nDue Date: ${asg.dueDate}\nMaximum Marks: ${asg.maxMarks}\n\nInstructions & Guidelines:\n${asg.instructions || asg.description}\n\n[Official Assignment Question Paper]`,
+                          `CAMPUS CONNECT Assignment Reference Document\n\nTitle: ${asg.title}\nClass: ${asg.className} - ${asg.sectionName}\nSubject: ${asg.subjectName}\nTeacher: ${asg.teacherName}\nDue Date: ${asg.dueDate}\nMaximum Marks: ${asg.maxMarks}\n\nInstructions & Guidelines:\n${asg.instructions || asg.description}\n\n[Official Assignment Question Paper]`,
                         ],
                         { type: "text/plain" }
                       );

@@ -131,7 +131,7 @@ export const AdminDashboard: React.FC = () => {
     link.setAttribute("href", encodedUri);
     link.setAttribute(
       "download",
-      `EDUVANTA_${currentInstitution.code}_Executive_Summary.csv`
+      `CAMPUS_CONNECT_${currentInstitution.code}_Executive_Summary.csv`
     );
     document.body.appendChild(link);
     link.click();

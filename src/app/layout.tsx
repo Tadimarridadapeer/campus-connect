@@ -5,9 +5,26 @@ import { ToastProvider } from "@/components/ui/Toast";
 import { AppLayout } from "@/components/layout/AppLayout";
 
 export const metadata: Metadata = {
-  title: "EDUVANTA — Education Management Ecosystem",
+  title: "Campus Connect | Education Management Platform",
   description:
-    "Comprehensive multi-tenant education management ERP for schools, colleges, and educational institutions.",
+    "Manage students, teachers, attendance, examinations, fees, assignments and academic operations through one connected education management platform.",
+  applicationName: "Campus Connect",
+  keywords: [
+    "Campus Connect",
+    "Education Management Platform",
+    "School Management",
+    "College ERP",
+    "CBSE",
+    "ICSE",
+    "Connecting Every Classroom",
+  ],
+  openGraph: {
+    title: "Campus Connect – Complete School & College Management Platform",
+    description:
+      "A complete education management platform connecting institutions, administrators, teachers, students and parents.",
+    siteName: "Campus Connect",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

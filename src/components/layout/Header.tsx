@@ -115,7 +115,7 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <div className="hidden sm:flex items-center gap-2 text-xs">
-            <span className="text-[#6B7280] font-normal">EDUVANTA</span>
+            <span className="text-[#6B7280] font-normal">CAMPUS CONNECT</span>
             <span className="text-[#D1D5DB]">/</span>
             <span className="font-semibold text-[#202124]">{getBreadcrumb()}</span>
           </div>

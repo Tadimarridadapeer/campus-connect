@@ -140,7 +140,7 @@ interface EduContextType {
 
 const EduContext = createContext<EduContextType | undefined>(undefined);
 
-const STORAGE_KEY = "eduvanta_state_v2";
+const STORAGE_KEY = "campus_connect_state_v1";
 
 export function EduProvider({ children }: { children: React.ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
@@ -174,7 +174,10 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
   // Load from localStorage on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      let stored = localStorage.getItem(STORAGE_KEY);
+      if (!stored) {
+        stored = localStorage.getItem("eduvanta_state_v2");
+      }
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed.institutions) setAllInstitutions(parsed.institutions);
@@ -203,7 +206,7 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
         if (parsed.selectedChildId) setSelectedChildId(parsed.selectedChildId);
       }
     } catch (e) {
-      console.error("Failed to load Eduvanta state from storage:", e);
+      console.error("Failed to load Campus Connect state from storage:", e);
     } finally {
       setIsInitialized(true);
     }
@@ -241,7 +244,7 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
     } catch (e) {
-      console.error("Failed to save Eduvanta state to storage:", e);
+      console.error("Failed to save Campus Connect state to storage:", e);
     }
   }, [
     isInitialized,
@@ -279,7 +282,10 @@ export function EduProvider({ children }: { children: React.ReactNode }) {
     email: string,
     password?: string
   ): { success: boolean; error?: string } => {
-    const trimmedEmail = email.trim().toLowerCase();
+    let trimmedEmail = email.trim().toLowerCase();
+    if (trimmedEmail === "admin@eduvanta.demo") {
+      trimmedEmail = "admin@campusconnect.demo";
+    }
     const found = users.find((u) => u.email.toLowerCase() === trimmedEmail);
     if (!found) {
       return {

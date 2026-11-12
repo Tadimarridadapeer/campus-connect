@@ -6,6 +6,7 @@ import { AuthModal } from "@/components/auth/AuthModal";
 import { UserRole } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { BrandLogo } from "@/components/common/BrandLogo";
 import {
   GraduationCap,
   Building2,
@@ -57,7 +58,7 @@ export const HeroPage: React.FC = () => {
     {
       role: "super_admin",
       name: "Dr. Vikramaditya Rao",
-      email: "admin@eduvanta.demo",
+      email: "admin@campusconnect.demo",
       campus: "Global Headquarters",
       desc: "Super Admin with multi-institution oversight, tenant configuration, and cross-campus analytics.",
       icon: "⚡",
@@ -175,22 +176,10 @@ export const HeroPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#202124] text-white flex items-center justify-center font-bold text-lg shadow-sm">
-              E
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-lg tracking-tight text-[#202124]">
-                  EDUVANTA
-                </span>
-                <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-[#EEF2FC] text-[#4667D5] border border-[#D6E0FA]">
-                  Enterprise ERP
-                </span>
-              </div>
-              <p className="text-[10px] text-[#6B7280] hidden sm:block">
-                Complete Education Management Ecosystem
-              </p>
-            </div>
+            <BrandLogo size="md" showTagline={true} />
+            <span className="hidden lg:inline-block text-[10px] uppercase font-semibold px-2 py-0.5 rounded-full bg-[#EEF2FC] text-[#4667D5] border border-[#D6E0FA]">
+              Education Management Platform
+            </span>
           </div>
 
           {/* Desktop Nav Links */}
@@ -239,22 +228,22 @@ export const HeroPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             {/* Version Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E8EAED] shadow-2xs text-xs font-medium text-[#374151] mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E8EAED] shadow-2xs text-xs font-medium text-[#374151] mb-6">
               <span className="w-2 h-2 rounded-full bg-[#25845A] animate-pulse" />
-              <span>Multi-Tenant ERP v2.4</span>
+              <span className="font-semibold text-[#202124]">CAMPUS CONNECT</span>
               <span className="text-[#D1D5DB]">•</span>
-              <span className="text-[#4667D5] font-semibold">Production Ready Demonstration</span>
+              <span className="text-[#4667D5] font-semibold">Connecting Every Classroom.</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#202124] leading-[1.15]">
-              Digitize Your Entire Educational Ecosystem
+              Connecting Every Classroom.
             </h1>
 
             {/* Subheading */}
             <p className="mt-5 text-base sm:text-lg text-[#4B5563] leading-relaxed max-w-2xl mx-auto">
-              Replace fragmented registers, paper notebooks, and spreadsheets with an interconnected,
-              enterprise cloud ERP. Purpose-built for CBSE/ICSE schools, polytechnics, and autonomous colleges.
+              A Complete Education Management Platform for Schools and Colleges. Replace fragmented registers,
+              paper notebooks, and spreadsheets with an interconnected, enterprise digital operating system.
             </p>
 
             {/* Action Buttons */}
@@ -328,7 +317,7 @@ export const HeroPage: React.FC = () => {
                 </div>
                 <div className="ml-3 px-3 py-1 rounded bg-[#2D3139] text-[#9CA3AF] text-[11px] font-mono flex items-center gap-1.5">
                   <Lock className="w-3 h-3 text-[#10B981]" />
-                  https://eduvanta.demo/portal/greenfield-international
+                  https://campusconnect.demo/portal/greenfield-international
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -563,7 +552,7 @@ export const HeroPage: React.FC = () => {
               One Engine, Multiple Institutions
             </h2>
             <p className="text-xs sm:text-sm text-[#6B7280] mt-2">
-              EDUVANTA logically isolates data, branding, grading scales, and academic schedules
+              CAMPUS CONNECT logically isolates data, branding, grading scales, and academic schedules
               per institution while giving the Super Admin unified governance.
             </p>
           </div>
@@ -611,7 +600,7 @@ export const HeroPage: React.FC = () => {
                       login(
                         inst.id === "inst-greenfield"
                           ? "principal@greenfield.demo"
-                          : "admin@eduvanta.demo",
+                          : "admin@campusconnect.demo",
                         "Demo@123"
                       );
                     }}
@@ -628,7 +617,7 @@ export const HeroPage: React.FC = () => {
                       openAuthWithEmail(
                         inst.id === "inst-greenfield"
                           ? "principal@greenfield.demo"
-                          : "admin@eduvanta.demo"
+                          : "admin@campusconnect.demo"
                       );
                     }}
                     variant="outline"
@@ -718,7 +707,7 @@ export const HeroPage: React.FC = () => {
                 Curriculum Progression & Daily Classroom Teaching Logs
               </h3>
               <p className="text-xs sm:text-sm text-[#D1D5DB] leading-relaxed">
-                Most school systems stop at student rosters. EDUVANTA bridges administration and academic
+                Most school systems stop at student rosters. CAMPUS CONNECT bridges administration and academic
                 delivery. Track chapter-by-chapter curriculum milestones with learning objectives, planned vs.
                 actual completion dates, and daily faculty logs with homework assigned.
               </p>
@@ -877,7 +866,7 @@ export const HeroPage: React.FC = () => {
             </h2>
             <p className="text-xs sm:text-sm text-[#6B7280] mt-2">
               Institutions manage confidential student records, medical notes, exam rankings, and financial ledgers.
-              EDUVANTA is designed with zero-bleed multi-tenancy and granular RBAC.
+              CAMPUS CONNECT is designed with zero-bleed multi-tenancy and granular RBAC.
             </p>
           </div>
 
@@ -922,15 +911,7 @@ export const HeroPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#E8EAED]">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#202124] text-white flex items-center justify-center font-bold text-base">
-                E
-              </div>
-              <div>
-                <span className="font-bold text-base text-[#202124]">EDUVANTA</span>
-                <p className="text-[11px] text-[#6B7280]">
-                  Next-Generation Multi-Tenant Education Management ERP
-                </p>
-              </div>
+              <BrandLogo size="md" showTagline={true} />
             </div>
 
             <div className="flex items-center gap-3">
@@ -946,7 +927,7 @@ export const HeroPage: React.FC = () => {
           </div>
 
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6B7280] gap-4">
-            <p>© 2026 EDUVANTA ERP Ecosystem. Built for live evaluations and product demonstrations.</p>
+            <p>© 2026 CAMPUS CONNECT. Connecting Every Classroom. Built for live evaluations and product demonstrations.</p>
             <div className="flex items-center gap-4">
               <span>Next.js 16 App Router</span>
               <span>•</span>
